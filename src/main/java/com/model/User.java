@@ -1,8 +1,9 @@
 package com.model;
 import javax.persistence.Entity;
-
+import javax.persistence.*;
+import org.springframework.stereotype.Component;
 import java.io.Serializable;
-
+@Component
 @Entity 
 
 public class User implements Serializable  {

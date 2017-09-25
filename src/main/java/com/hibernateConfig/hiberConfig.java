@@ -33,7 +33,7 @@ public class hiberConfig {
 		dt.setDriverClassName("org.h2.Driver");
 		dt.setUrl("jdbc:h2:~/test");
 		dt.setUsername("sa");
-		dt.setPassword(password);
+		dt.setPassword("");
    System.out.println("Connection Establish ....");
    return dt;
    
@@ -51,7 +51,8 @@ public class hiberConfig {
 	
 	@Autowired
 	@Bean(name="UserDao")
-    public UserDao getUserData(sessionFactory sessionFac) {
+    public UserDao getUserData(sessionFactory sessionFac)
+	{
 		return new UserDaoImpl(sessionFac);
 		
 }
@@ -60,6 +61,7 @@ public class hiberConfig {
     public sessionFactory getSession(DataSource datasource) {
 		LocalSessionFactoryBuilder lsfb = new LocalSessionFactoryBuilder(datasource);
 		lsfb.addProperties(getHiberProps());
+		lsfb.addAnnotatedClass(User.class);
 		return lsfb.buildSessionFactory();	
 		
 }
